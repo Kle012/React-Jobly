@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import { useHistory } from "react-router-dom";
 import Alert from "../helpers/Alert";
 
 /** Signup Form
@@ -22,15 +22,15 @@ const SignUpForm = ({ signup }) => {
     }
     const history = useHistory();
     const [formData, setFormData] = useState(initial_state);
-    const [errors, setErrors] = useState([]);
+    const [formErrors, setFormErrors] = useState([]);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         let res = await signup(formData);
         if (res.success) {
-            history.push('/');
+            history.push('/companies');
         } else {
-            setErrors(res.errors);
+            setFormErrors(res.errors);
         }
     }
 
@@ -114,9 +114,10 @@ const SignUpForm = ({ signup }) => {
                                 />
                             </div>
 
-                            {errors.length
-                                ? <Alert type="danger" messages={errors} />
-                                : null}
+                            {formErrors.length
+                                ? <Alert type="danger" messages={formErrors} />
+                                : null
+                            }
 
                             <button className="login-btn" onSubmit={handleSubmit}>
                                 Sign Up
