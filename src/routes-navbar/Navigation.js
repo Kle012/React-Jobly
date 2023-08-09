@@ -1,18 +1,61 @@
-import React from "react";
-import { NavLink } from "react-router-dom/cjs/react-router-dom.min";
+import React, { useContext } from "react";
+import { Link, NavLink } from "react-router-dom";
+import UserContext from "../auth/UserContext";
 
-const Navigation = () => {
+const Navigation = ({ logout }) => {
+    const { currUser } = useContext(UserContext);
+
+    const loggedIn = () => {
+        return (
+            <ul className="">
+                <li className="">
+                    <NavLink className="" exact to='/companies'>
+                        Companies
+                    </NavLink>
+                </li>
+                <li className="">
+                    <NavLink className="" exact to='/jobs'>
+                        Jobs
+                    </NavLink>
+                </li>
+                <li className="">
+                    <NavLink className="" exact to='/profile'>
+                        Profile
+                    </NavLink>
+                </li>
+                <li className="">
+                    <Link className="" to='/' onClick={logout}>
+                        Log Out {currUser.first_name || currUser.username}
+                    </Link>
+                </li>
+            </ul>
+        )
+    }
+
+    const loggedOut = () => {
+        return (
+            <ul className="">
+                <li className="">
+                    <NavLink className="" to='/login'>
+                        Log In
+                    </NavLink>
+                </li>
+                <li className="">
+                    <NavLink className="" to='/signup'>
+                        Sign Up
+                    </NavLink>
+                </li>
+            </ul>
+        )
+    }
+
     return (
-        <div className="Navigation">
-            <nav>
-                <NavLink exact to='/'>Home</NavLink>
-                <NavLink exact to='/companies'>Companies</NavLink>
-                <NavLink exact to='/jobs'>Jobs</NavLink>
-                <NavLink exact to='/login'>Login</NavLink>
-                <NavLink exact to='/signup'>Sign Up</NavLink>
-                <NavLink exact to='/profile'>Profile</NavLink>
-            </nav>
-        </div>
+        <nav className="Navigation">
+            <Link className="" to='/'>
+                Jobly
+            </Link>
+            {currUser ? loggedIn() : loggedOut()}
+        </nav>
     )
 }
 
