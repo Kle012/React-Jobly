@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import { useHistory } from "react-router-dom";
 import Alert from "../helpers/Alert";
 
 /** Login form
@@ -27,7 +27,7 @@ const LoginForm = ({ login }) => {
         e.preventDefault();
         let res = await login(formData);
         if (res.success) {
-            history.push('/');
+            history.push('/companies');
         } else {
             setErrors(res.errors);
         }
@@ -60,6 +60,8 @@ const LoginForm = ({ login }) => {
                                     className="form-control"
                                     value={formData.username}
                                     onChange={handleChange}
+                                    autoComplete="username"
+                                    required
                                 />
                             </div>
 
@@ -73,12 +75,15 @@ const LoginForm = ({ login }) => {
                                     className="form-control"
                                     value={formData.password}
                                     onChange={handleChange}
+                                    autoComplete="current-password"
+                                    required
                                 />
                             </div>
 
                             {errors.length
                                 ? <Alert type="danger" messages={errors} />
-                                : null}
+                                : null
+                            }
 
                             <button className="login-btn" onSubmit={handleSubmit}>
                                 Log In
