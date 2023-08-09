@@ -1,5 +1,5 @@
 import React from "react";
-import { Switch, Route } from "react-router-dom/cjs/react-router-dom.min";
+import { Switch, Route, Redirect } from "react-router-dom";
 
 import Home from "../homepage/Home";
 import CompanyList from "../companies/CompanyList";
@@ -8,8 +8,9 @@ import JobList from "../jobs/JobList";
 import LoginForm from "../auth/LoginForm";
 import SignUpForm from "../auth/SignUpForm";
 import ProfilePage from "../profiles/ProfilePage";
+import AuthRoutes from "./AuthRoutes";
 
-const Routes = () => {
+const Routes = ({ login, signup }) => {
     return (
         <div className="Routes">
             <Switch>
@@ -17,27 +18,29 @@ const Routes = () => {
                     <Home />
                 </Route>
 
-                <Route exact path='/companies'>
-                    <CompanyList />
-                </Route>
-                <Route exact path='/companies/:handle'>
-                    <CompanyDetails />
-                </Route>
-
-                <Route exact path='/jobs'>
-                    <JobList />
-                </Route>
-
                 <Route exact path='/login'>
-                    <LoginForm />
+                    <LoginForm login={login}/>
                 </Route>
                 <Route exact path='/signup'>
-                    <SignUpForm />
+                    <SignUpForm signup={signup}/>
                 </Route>
 
-                <Route exact path='/profile'>
+                <AuthRoutes exact path='/companies'>
+                    <CompanyList />
+                </AuthRoutes>
+                <AuthRoutes exact path='/companies/:handle'>
+                    <CompanyDetails />
+                </AuthRoutes>
+
+                <AuthRoutes exact path='/jobs'>
+                    <JobList />
+                </AuthRoutes>
+
+                <AuthRoutes exact path='/profile'>
                     <ProfilePage />
-                </Route>
+                </AuthRoutes>
+
+                <Redirect to='/' />
             </Switch>
         </div>
     )
