@@ -13,7 +13,7 @@ const ProfilePage = () => {
         password: ""
     }
     const [formData, setFormData] = useState(INITIAL_STATE);
-    const [errors, setErrors] = useState([]);
+    const [formErrors, setFormErrors] = useState([]);
     const [saveConfirmed, setSaveConfirmed] = useState(false);
 
     const handleSubmit = async (e) => {
@@ -33,7 +33,7 @@ const ProfilePage = () => {
         try {
             updatedUser = await JoblyApi.saveProfile(username, profileData);
         } catch (error) {
-            setErrors(error);
+            setFormErrors(error);
             return;
         }
 
@@ -41,7 +41,7 @@ const ProfilePage = () => {
             ...data,
             password: ""
         }))
-        setErrors([]);
+        setFormErrors([]);
         setSaveConfirmed(true);
 
         setCurrUser(updatedUser);
@@ -53,11 +53,11 @@ const ProfilePage = () => {
             ...data,
             [name]: value
         }))
-        setErrors([]);
+        setFormErrors([]);
     }
 
     return (
-        <div className="ProfilePage">
+        <div className="col-md-6 col-lg-4 offset-md-3 offset-lg-4">
             <h3>Profile</h3>
             <div className="card">
                 <div className="card-body">
@@ -105,15 +105,15 @@ const ProfilePage = () => {
                             />
                         </div>
 
-                        {errors.length
-                            ? <Alert type="danger" messages={errors} />
+                        {formErrors.length
+                            ? <Alert type="danger" messages={formErrors} />
                             : null}
 
                         {saveConfirmed
                             ? <Alert type="success" messages={['Updated successfully!']} />
                             : null}
 
-                        <button className="btn" onClick={handleSubmit}>
+                        <button className="btn btn-primary btn-block mt-4" onClick={handleSubmit}>
                             Updated!
                         </button>
                     </form>

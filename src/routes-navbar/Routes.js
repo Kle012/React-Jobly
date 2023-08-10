@@ -12,7 +12,7 @@ import AuthRoutes from "./AuthRoutes";
 
 const Routes = ({ login, signup }) => {
     return (
-        <div className="Routes">
+        <div className="pt-5">
             <Switch>
                 <Route exact path='/'>
                     <Home />

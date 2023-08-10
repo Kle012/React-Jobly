@@ -1,30 +1,31 @@
 import React, { useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
 import UserContext from "../auth/UserContext";
+import './Navigation.css';
 
 const Navigation = ({ logout }) => {
     const { currUser } = useContext(UserContext);
 
     const loggedIn = () => {
         return (
-            <ul className="">
-                <li className="">
-                    <NavLink className="" exact to='/companies'>
+            <ul className="navbar-nav ml-auto">
+                <li className="nav-item mr-4">
+                    <NavLink className="nav-link" to='/companies'>
                         Companies
                     </NavLink>
                 </li>
-                <li className="">
-                    <NavLink className="" exact to='/jobs'>
+                <li className="nav-item mr-4">
+                    <NavLink className="nav-link" to='/jobs'>
                         Jobs
                     </NavLink>
                 </li>
-                <li className="">
-                    <NavLink className="" exact to='/profile'>
+                <li className="nav-item mr-4">
+                    <NavLink className="nav-link" to='/profile'>
                         Profile
                     </NavLink>
                 </li>
-                <li className="">
-                    <Link className="" to='/' onClick={logout}>
+                <li className="nav-item mr-4">
+                    <Link className="nav-link" to='/' onClick={logout}>
                         Log Out {currUser.first_name || currUser.username}
                     </Link>
                 </li>
@@ -34,14 +35,14 @@ const Navigation = ({ logout }) => {
 
     const loggedOut = () => {
         return (
-            <ul className="">
-                <li className="">
-                    <NavLink className="" to='/login'>
+            <ul className="navbar-nav ml-auto">
+                <li className="nav-item mr-4">
+                    <NavLink className="nav-link" to='/login'>
                         Log In
                     </NavLink>
                 </li>
-                <li className="">
-                    <NavLink className="" to='/signup'>
+                <li className="nav-item mr-4">
+                    <NavLink className="nav-link" to='/signup'>
                         Sign Up
                     </NavLink>
                 </li>
@@ -50,8 +51,8 @@ const Navigation = ({ logout }) => {
     }
 
     return (
-        <nav className="Navigation">
-            <Link className="" to='/'>
+        <nav className="Navigation navbar navbar-expand-md">
+            <Link className="navbar-brand" to='/'>
                 Jobly
             </Link>
             {currUser ? loggedIn() : loggedOut()}
