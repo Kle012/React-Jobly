@@ -28,7 +28,7 @@ const CompanyList = () => {
     if (!companies) return <Loading />;
 
     return (
-        <div className="CompanyList">
+        <div className="CompanyList col-md-8 offset-md-2">
             <SearchForm searchFor={search} />
             {companies.length
             ? (
@@ -44,7 +44,7 @@ const CompanyList = () => {
                     ))}
                 </div>
             ) : (
-                <p className="CompanyList-notFound">
+                <p className="lead">
                     Sorry, I can't find any companies with that name.
                 </p>
             )}

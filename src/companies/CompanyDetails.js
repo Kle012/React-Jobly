@@ -27,7 +27,7 @@ const CompanyDetails = () => {
     if (!company) return <Loading />;
 
     return (
-        <div className="CompanyDetails">
+        <div className="CompanyDetails col-md-8 offset-md-2">
             <h4>{company.name}</h4>
             <p>{company.description}</p>
             <JobCardList jobs={company.jobs} />
