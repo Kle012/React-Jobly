@@ -44,28 +44,27 @@ function App() {
   const logout = () => {
     setCurrUser(null);
     setToken(null);
-
   }
 
   /** Sign up */
-  const signup = async (info) => {
+  const signup = async (signupInfo) => {
     try {
-      let token = await JoblyApi.signup(info);
+      let token = await JoblyApi.signup(signupInfo);
       setToken(token);
       return { success: true }
-    } catch (error) {
-      return { success: false, error }
+    } catch (errors) {
+      return { success: false, errors }
     }
   }
 
   /** Log in */
-  const login = async (info) => {
+  const login = async (loginInfo) => {
     try {
-      let token = await JoblyApi.login(info);
+      let token = await JoblyApi.login(loginInfo);
       setToken(token);
       return { success: true }
-    } catch (error) {
-      return { success: false, error }
+    } catch (errors) {
+      return { success: false, errors }
     }
   }
 
