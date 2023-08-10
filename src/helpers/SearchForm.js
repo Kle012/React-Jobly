@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import './SearchForm.css';
 
 /** Search Form
  * Appears on CompanyList for filtering
@@ -22,17 +23,17 @@ const SearchForm = ({ searchFor }) => {
     }
 
     return (
-        <div className="SearchFormDiv">
-            <form className="SearchForm" onSubmit={handleSubmit}>
+        <div className="SearchForm mb-4">
+            <form className="form-inline" onSubmit={handleSubmit}>
                 <input
-                    className="SearchForm-input"
+                    className="form-control form-control-lg flex-grow-1"
                     name="term"
                     placeholder="Look up with term"
                     value={term}
                     onChange={handleChange}
                 />
 
-                <button className="search-btn">Search</button>
+                <button type="submit" className="btn btn-lag btn-primary">Search</button>
             </form>
         </div>
     )
