@@ -22,8 +22,8 @@ class JoblyApi {
     const url = `${BASE_URL}/${endpoint}`;
     const headers = { Authorization: `Bearer ${JoblyApi.token}` };
     const params = (method === "get")
-        ? data
-        : {};
+      ? data
+      : {};
 
     try {
       return (await axios({ url, method, data, params, headers })).data;
@@ -51,9 +51,9 @@ class JoblyApi {
   }
 
   /** Get list of jobs (filtered by title if not undefined) */
-  
+
   static async getJobs(title) {
-    let res = await this.request("jobs", {title});
+    let res = await this.request("jobs", { title });
     return res.jobs;
   }
 
@@ -66,14 +66,14 @@ class JoblyApi {
 
   /** Get token from login */
 
-  static async login(data){
+  static async login(data) {
     let res = await this.request(`auth/token`, data, "post");
     return res.token;
   }
 
   /** Get token from signup */
 
-  static async signup(data){
+  static async signup(data) {
     let res = await this.request(`auth/register`, data, "post");
     return res.token;
   }
@@ -86,7 +86,7 @@ class JoblyApi {
   }
 
   /** Apply to a job */
-  
+
   static async applyToJob(username, id) {
     await this.request(`users/${username}/jobs/${id}`, {}, "post");
   }
