@@ -15,13 +15,12 @@ import Alert from "../helpers/Alert";
  */
 
 const LoginForm = ({ login }) => {
-    const initial_state = {
+    const history = useHistory();
+    const [formData, setFormData] = useState({
         username: "",
         password: ""
-    }
-    const history = useHistory();
-    const [formData, setFormData] = useState(initial_state);
-    const [errors, setErrors] = useState([]);
+    });
+    const [formErrors, setFormErrors] = useState([]);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -29,7 +28,7 @@ const LoginForm = ({ login }) => {
         if (res.success) {
             history.push('/companies');
         } else {
-            setErrors(res.errors);
+            setFormErrors(res.errors);
         }
     }
 
@@ -43,14 +42,14 @@ const LoginForm = ({ login }) => {
 
     return (
         <div className="LoginForm">
-            <div className="container">
-                <h3 className="form-title">
+            <div className="container col-md-6 offset-md-3 col-lg-4 offset-lg-4">
+                <h3 className="mb-3">
                     Log In
                 </h3>
 
                 <div className="card">
                     <div className="card-body">
-                        <form className="Login-form" onSubmit={handleSubmit}>
+                        <form onSubmit={handleSubmit}>
                             <div className="form-group">
                                 <label htmlFor="username">
                                     Username
@@ -80,12 +79,12 @@ const LoginForm = ({ login }) => {
                                 />
                             </div>
 
-                            {errors.length
-                                ? <Alert type="danger" messages={errors} />
+                            {formErrors.length
+                                ? <Alert type="danger" messages={formErrors} />
                                 : null
                             }
 
-                            <button className="login-btn" onSubmit={handleSubmit}>
+                            <button type="submit" className="btn btn-primary float-right" onSubmit={handleSubmit}>
                                 Log In
                             </button>
 

@@ -13,17 +13,16 @@ import Alert from "../helpers/Alert";
  * Routes -> SignupForm -> Alert
  */
 const SignUpForm = ({ signup }) => {
-    const initial_state = {
+    const history = useHistory();
+    const [formData, setFormData] = useState({
         username: "",
         password: "",
         firstName: "",
         lastName: "",
         email: ""
-    }
-    const history = useHistory();
-    const [formData, setFormData] = useState(initial_state);
+    });
     const [formErrors, setFormErrors] = useState([]);
-
+    
     const handleSubmit = async (e) => {
         e.preventDefault();
         let res = await signup(formData);
@@ -44,14 +43,14 @@ const SignUpForm = ({ signup }) => {
 
     return (
         <div className="SignupForm">
-            <div className="container">
-                <h3 className="form-title">
+            <div className="container col-md-6 offset-md-3 col-lg-4 offset-lg-4">
+                <h3 className="mb-3">
                     Sign Up
                 </h3>
 
                 <div className="card">
                     <div className="card-body">
-                        <form className="Signup-form" onSubmit={handleSubmit}>
+                        <form onSubmit={handleSubmit}>
                             <div className="form-group">
                                 <label htmlFor="username">
                                     Username
@@ -61,6 +60,7 @@ const SignUpForm = ({ signup }) => {
                                     className="form-control"
                                     value={formData.username}
                                     onChange={handleChange}
+                                    autoComplete="username"
                                 />
                             </div>
 
@@ -74,6 +74,7 @@ const SignUpForm = ({ signup }) => {
                                     className="form-control"
                                     value={formData.password}
                                     onChange={handleChange}
+                                    autoComplete="new-password"
                                 />
                             </div>
 
@@ -119,7 +120,7 @@ const SignUpForm = ({ signup }) => {
                                 : null
                             }
 
-                            <button className="login-btn" onSubmit={handleSubmit}>
+                            <button type="submit" className="btn btn-primary float-right" onSubmit={handleSubmit}>
                                 Sign Up
                             </button>
 
