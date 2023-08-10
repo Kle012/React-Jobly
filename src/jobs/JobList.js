@@ -28,15 +28,13 @@ const JobList = () => {
     if (!jobs) return <Loading />
 
     return (
-        <div className="JobList">
+        <div className="JobList col-md-8 offset-md-2">
             <SearchForm searchFor={search} />
             {jobs.length
                 ? (
-                    <div className="JobList-list">
-                        <JobCardList jobs={jobs} />
-                    </div>
+                    <JobCardList jobs={jobs} />
                 ) : (
-                    <p className="JobList-notFound">
+                    <p className="lead">
                         Sorry, I can't find any jobs with that title.
                     </p>
                 )
