@@ -120,7 +120,7 @@ const SignUpForm = ({ signup }) => {
                                 : null
                             }
 
-                            <button type="submit" className="btn btn-primary float-right" onSubmit={handleSubmit}>
+                            <button type="submit" className="btn btn-primary float-right">
                                 Sign Up
                             </button>
 

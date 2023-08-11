@@ -26,6 +26,8 @@ const LoginForm = ({ login }) => {
         e.preventDefault();
         let res = await login(formData);
         if (res.success) {
+            console.log(res);
+            console.log(history.push);
             history.push('/companies');
         } else {
             setFormErrors(res.errors);
@@ -84,7 +86,7 @@ const LoginForm = ({ login }) => {
                                 : null
                             }
 
-                            <button type="submit" className="btn btn-primary float-right" onSubmit={handleSubmit}>
+                            <button className="btn btn-primary float-right">
                                 Log In
                             </button>
 
