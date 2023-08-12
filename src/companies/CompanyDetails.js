@@ -13,14 +13,12 @@ import JobCardList from "../jobs/JobCardList";
 
 const CompanyDetails = () => {
     const {handle} = useParams();
-
     const [company, setCompany] = useState(null);
 
     useEffect(() => {
         async function getCompany() {
             setCompany(await JoblyApi.getCompany(handle));
         }
-
         getCompany();
     }, [handle])
 
@@ -28,7 +26,7 @@ const CompanyDetails = () => {
 
     return (
         <div className="CompanyDetails col-md-8 offset-md-2">
-            <h4>{company.name}</h4>
+            <h6>{company.name}</h6>
             <p>{company.description}</p>
             <JobCardList jobs={company.jobs} />
         </div>

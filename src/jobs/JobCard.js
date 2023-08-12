@@ -9,17 +9,17 @@ import './JobCard.css';
  * JobCardList -> JobCard
  */
 const JobCard = ({ id, title, salary, equity, companyName }) => {
-    const [hasApplied, applyToJob] = useContext(UserContext);
+    const { hasApplied, applyToJob } = useContext(UserContext);
     const [applied, setApplied] = useState();
 
     useEffect(() => {
         setApplied(hasApplied(id));
-    }, [id, hasApplied])
+    }, [id, hasApplied]);
 
     const handleApply = async (e) => {
         if (hasApplied(id)) return;
         applyToJob(id);
-        setApplied(true)
+        setApplied(true);
     }
 
     const formatSalary = (salary) => {
@@ -37,9 +37,9 @@ const JobCard = ({ id, title, salary, equity, companyName }) => {
     return (
         <div className="JobCard card"> {applied}
             <div className="card-body">
-                <h4 className="card-title">
+                <h6 className="card-title">
                     {title}
-                </h4>
+                </h6>
                 <p>{companyName}</p>
                 {salary && <div><small>Salary: {formatSalary(salary)}</small></div>}
                 {equity !== undefined && <div><small>Equity: {equity}</small></div>}
