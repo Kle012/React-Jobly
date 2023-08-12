@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import './App.css';
 import Navigation from './routes-navbar/Navigation';
 import Routes from './routes-navbar/Routes';
 import useLocalStorage from './hooks/useLocalStorage';
-import { jwt } from 'jsonwebtoken';
+import jwt from 'jsonwebtoken';
 import JoblyApi from './api';
 import { BrowserRouter } from 'react-router-dom';
 import UserContext from './auth/UserContext';
@@ -70,7 +69,7 @@ function App() {
 
   /** Check if job has been applied */
 
-  const hasApplied= (id) => {
+  const hasApplied = (id) => {
     return applicationId.has(id);
   }
 
