@@ -1,6 +1,6 @@
 # React JOBLY 
 React front end for the Jobly backend.
-[Jobly Backend](https://github.com/Kle012/Express-Jobly-Cumulative2.git)
+[Jobly Backend](https://github.com/Kle012/Jobly-Backend.git)
 
 # Getting Started with Create React App
 
